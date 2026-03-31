@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Healthy Diet</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f4f4f4;
+}
+
+/* navbar */
+
+.navbar{
+background:#e1a91c;
+padding:12px 30px;
+}
+
+.logo{
+color:black;
+text-decoration:none;
+}
+
+/* section */
+
+.section{
+padding:40px;
+}
+
+/* cards */
+
+.card{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+display:inline-block;
+width:220px;
+cursor:pointer;
+text-align:center;
+font-weight:bold;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+transition:0.2s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+/* recipe container */
+
+.recipe{
+background:white;
+padding:40px;
+margin-top:40px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+
+.recipe h1{
+text-align:center;
+color:#e1a91c;
+margin-bottom:30px;
+}
+
+/* image + video */
+
+.media{
+display:flex;
+gap:30px;
+justify-content:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+
+.media img{
+width:420px;
+height:260px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.media iframe{
+width:420px;
+height:260px;
+border:none;
+border-radius:12px;
+}
+
+.recipe-info{
+display:flex;
+justify-content:center;   
+align-items:flex-start;
+gap:40px;
+max-width:1000px;
+margin:40px auto;
+flex-wrap:nowrap;    
+}
+
+.ingredients{
+width:350px;
+background:#fff7e6;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 17px;
+}
+
+/* steps box */
+
+.steps{
+width:450px;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 20px;
+background:#fff7e6;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.buttons{
+text-align:center;
+margin-top:20px;
+}
+
+.buttons button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+}
+
+.buttons button:first-child{
+background:#4caf50;
+color:white;
+}
+
+.buttons button:last-child{
+background:#ff4081;
+color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+<a href="index.html" class="logo"><h2>The Secret Ingredient</h2></a>
+</div>
+
+<div class="section">
+
+<h2>Healthy Categories</h2>
+
+<div class="card" onclick="salad()">Salads</div>
+<div class="card" onclick="soup()">Soups</div>
+<div class="card" onclick="smoothie()">Smoothies</div>
+
+</div>
+
+<div id="recipes" class="section"></div>
+
+<script>
+
+function salad(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Fresh Garden Salad</h1>
+
+<div class="media">
+
+<img src="https://www.recipetineats.com/tachyon/2021/08/Garden-Salad_47-SQ.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bMactSaZWfU?si=_47ktBJXG21NzU9m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Lettuce leaves</li>
+<li>Cucumber (sliced)</li>
+<li>Cherry tomatoes</li>
+<li>Carrot (grated)</li>
+<li>Olive oil</li>
+<li>Lemon juice</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Garden salad is rich in fiber, vitamins, and antioxidants.  
+It helps improve digestion and supports a healthy lifestyle.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Wash lettuce, cucumber, tomatoes, and carrot thoroughly.</li>
+
+<li>Chop vegetables into bite-sized pieces.</li>
+
+<li>Add all vegetables into a bowl.</li>
+
+<li>Drizzle olive oil and lemon juice.</li>
+
+<li>Add salt and pepper.</li>
+
+<li>Toss well and serve fresh.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Avocado Corn Salad</h1>
+
+<div class="media">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5f0z8AeHxEg7RcY0iGnJvcc8OKoHFFMOGeQ&s">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Nr3eqepQVPc?si=inQRoviitA2_iHH5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 avocado (cubed)</li>
+<li>1 cup boiled corn</li>
+<li>1 tomato (chopped)</li>
+<li>½ onion (chopped)</li>
+<li>1 tbsp olive oil</li>
+<li>Lime juice</li>
+<li>Salt</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Avocado corn salad provides healthy fats, fiber, and essential vitamins.  
+It helps maintain heart health and improves digestion.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Cut avocado into cubes.</li>
+
+<li>Boil corn until soft.</li>
+
+<li>Chop tomato and onion.</li>
+
+<li>Add all ingredients to a bowl.</li>
+
+<li>Drizzle olive oil and lime juice.</li>
+
+<li>Mix gently and serve fresh.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+`;
+
+}
+
+function soup(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Tomato Soup</h1>
+
+<div class="media">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNtKU_laXmeMcXyJVYGjDRSMwEROceKxtq2lsefV7lrX-YG9sDctX7apbDo03pK_7PAMvElYP8eiZUtffkFwBvFT4o0BRUIjGAB6R7GA&s=10">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ojkZE8mTSgo?si=8T6j3I4UPI6vQ1E2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>4 tomatoes</li>
+<li>1 onion</li>
+<li>2 garlic cloves</li>
+<li>1 tbsp butter</li>
+<li>Salt & pepper</li>
+<li>Fresh cream (optional)</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Tomato soup is rich in antioxidants like lycopene.  
+It supports heart health and strengthens immunity.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Boil tomatoes until soft.</li>
+
+<li>Blend tomatoes into a smooth puree.</li>
+
+<li>Heat butter in a pan and sauté onion and garlic.</li>
+
+<li>Add tomato puree and cook for 5 minutes.</li>
+
+<li>Add salt and pepper.</li>
+
+<li>Serve hot with cream if desired.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Vegetable Soup</h1>
+
+<div class="media">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIQH49waX_-KXhT09Z5dF19nv292n22KbwZQ&s">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/p-QQKikTRTY?si=mFwlPfIGglqsAsuc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Carrot</li>
+<li>Beans</li>
+<li>Cabbage</li>
+<li>Sweet corn</li>
+<li>Garlic</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Vegetable soup provides vitamins, minerals, and fiber.  
+It helps improve digestion and strengthens immunity.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Chop all vegetables into small pieces.</li>
+
+<li>Heat oil in a pot and sauté garlic.</li>
+
+<li>Add vegetables and cook for 3 minutes.</li>
+
+<li>Add water and bring to a boil.</li>
+
+<li>Cook for 10 minutes.</li>
+
+<li>Add salt and pepper and serve hot.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+`;
+
+}
+
+function smoothie(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Banana Smoothie</h1>
+
+<div class="media">
+
+<img src="https://www.dessertfortwo.com/wp-content/uploads/2023/02/Banana-Milkshake-8-735x1103.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wnJhKQkEz6E?si=uiDYy2_VAZQcTpXM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 banana</li>
+<li>1 cup milk</li>
+<li>1 tbsp honey</li>
+<li>Ice cubes</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Banana smoothies provide potassium and natural energy.  
+They support muscle health and improve digestion.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Peel and cut banana into pieces.</li>
+
+<li>Add banana, milk, and honey into a blender.</li>
+
+<li>Add ice cubes.</li>
+
+<li>Blend until smooth.</li>
+
+<li>Pour into a glass.</li>
+
+<li>Serve chilled.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Strawberry Smoothie</h1>
+
+<div class="media">
+
+<img src="https://foodsharingvegan.com/wp-content/uploads/2022/03/Strawberry-Yogurt-Smoothie-Plant-Based-on-a-Budget-1-2.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a9yh08rZFs8?si=Md1VgBLn_acqBnGz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup strawberries</li>
+<li>1 banana</li>
+<li>1 cup milk or yogurt</li>
+<li>1 tsp honey</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Strawberries are rich in antioxidants and vitamin C.  
+This smoothie helps boost immunity and supports healthy skin.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Wash strawberries thoroughly.</li>
+
+<li>Add strawberries, banana, milk, and honey into a blender.</li>
+
+<li>Blend until smooth.</li>
+
+<li>Pour into a glass.</li>
+
+<li>Serve chilled.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+`;
+
+}
+function getRecipeData(button){
+
+let recipe = button.closest(".recipe");
+
+let name = recipe.querySelector("h1").innerText;
+let image = recipe.querySelector("img").src;
+
+let ingredients = "";
+recipe.querySelectorAll(".ingredients li").forEach(li=>{
+ingredients += li.innerText + "\n";
+});
+
+let steps = "";
+recipe.querySelectorAll(".steps li").forEach(li=>{
+steps += li.innerText + "\n";
+});
+
+return { name, image, ingredients, steps };
+
+}
+
+
+function saveRecipe(button){
+
+let currentRecipe = getRecipeData(button);
+
+let saved = JSON.parse(localStorage.getItem("recipes")) || [];
+saved.push(currentRecipe);
+
+localStorage.setItem("recipes", JSON.stringify(saved));
+
+alert("Recipe saved!");
+window.location.href = "saved.html";
+
+}
+
+
+function addToFavourites(button){
+
+let currentRecipe = getRecipeData(button);
+
+let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+favs.push(currentRecipe);
+
+localStorage.setItem("favourites", JSON.stringify(favs));
+
+alert("Added to favourites!");
+window.location.href = "favourites.html";
+
+}
+let healthyArray = [
+  {
+    name: "Fresh Garden Salad",
+    type: "healthy",
+    category: "salad",
+    ingredients: "lettuce, cucumber, cherry tomatoes, carrot, olive oil, lemon juice, salt, pepper",
+    steps: "Chop vegetables, mix, add dressing, toss and serve",
+    image: "https://www.recipetineats.com/tachyon/2021/08/Garden-Salad_47-SQ.jpg",
+    video: "https://www.youtube.com/watch?v=6Xh7V9n9k5k"
+  },
+  {
+    name: "Avocado Corn Salad",
+    type: "healthy",
+    category: "salad",
+    ingredients: "avocado, corn, tomato, onion, olive oil, lime juice, salt",
+    steps: "Mix all ingredients gently and serve fresh",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5f0z8AeHxEg7RcY0iGnJvcc8OKoHFFMOGeQ&s",
+    video: "https://www.youtube.com/watch?v=ZxK0z9w1WkU"
+  },
+  {
+    name: "Tomato Soup",
+    type: "healthy",
+    category: "soup",
+    ingredients: "tomato, onion, garlic, butter, salt, pepper",
+    steps: "Boil tomatoes, blend, cook with spices, serve hot",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNtKU_laXmeMcXyJVYGjDRSMwEROceKxtq2lsefV7lrX-YG9sDctX7apbDo03pK_7PAMvElYP8eiZUtffkFwBvFT4o0BRUIjGAB6R7GA&s=10",
+    video: "https://www.youtube.com/watch?v=KXKz2l1xXkE"
+  },
+  {
+    name: "Vegetable Soup",
+    type: "healthy",
+    category: "soup",
+    ingredients: "carrot, beans, cabbage, corn, garlic, salt, pepper",
+    steps: "Cook vegetables, add water, boil and serve",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIQH49waX_-KXhT09Z5dF19nv292n22KbwZQ&s",
+    video: "https://www.youtube.com/watch?v=9g3r5X1kX9A"
+  },
+  {
+    name: "Banana Smoothie",
+    type: "healthy",
+    category: "smoothie",
+    ingredients: "banana, milk, honey, ice",
+    steps: "Blend all ingredients until smooth",
+    image: "https://www.dessertfortwo.com/wp-content/uploads/2023/02/Banana-Milkshake-8-735x1103.jpg",
+    video: "https://www.youtube.com/watch?v=2Qz7Xy1k9lE"
+  },
+  {
+    name: "Strawberry Smoothie",
+    type: "healthy",
+    category: "smoothie",
+    ingredients: "strawberry, banana, milk, honey",
+    steps: "Blend ingredients and serve chilled",
+    image: "https://foodsharingvegan.com/wp-content/uploads/2022/03/Strawberry-Yogurt-Smoothie-Plant-Based-on-a-Budget-1-2.jpg",
+    video: "https://www.youtube.com/watch?v=7yK5fZ3k2XQ"
+  }
+];
+
+if (!localStorage.getItem("healthyRecipes")) {
+  localStorage.setItem("healthyRecipes", JSON.stringify(healthyArray));
+}
+</script>
+
+</body>
+</html>

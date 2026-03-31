@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping List</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #fff7e6, #ffe0b2);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 50px;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+   margin-top: 80px;
+}
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    #item-input {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      margin-right: 10px;
+      transition: 0.3s;
+    }
+
+    #item-input:focus {
+      border-color: #4caf50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, #4caf50, #81c784);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    #shopping-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    #shopping-list li {
+      background: #fafafa;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.2s;
+    }
+
+    #shopping-list li:hover {
+      background: #e8f5e9;
+    }
+
+    .delete-btn {
+      background: #f44336;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .delete-btn:hover {
+      background: #e57373;
+    }
+    .navbar{
+background:#e1a91c;
+padding:12px 30px;
+ top: 0;        
+ position: fixed;   
+  left: 0;           
+  width: 100%;       
+  z-index: 1000;     
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+  </style>
+</head>
+<body>
+  <div class="navbar">
+<a href="Homepage.html" class="logo"><h2>The Secret Ingredient</h2></a>
+</div>
+  <div class="container">
+    <h1>🛒 Shopping List</h1>
+    <p>Add ingredients and track what you need to buy.</p>
+
+    <input id="item-input" type="text" placeholder="Add item">
+    <button onclick="addItem()">Add</button>
+
+    <h3>To Buy</h3>
+    <ul id="shopping-list"></ul>
+  </div>
+
+  <script>
+    function addItem() {
+      const input = document.getElementById("item-input");
+      const list = document.getElementById("shopping-list");
+
+      if (input.value.trim() !== "") {
+        const li = document.createElement("li");
+        li.textContent = input.value;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.onclick = function() {
+          list.removeChild(li);
+        }
+
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+
+        input.value = "";
+        input.focus();
+      }
+    }
+
+    document.getElementById("item-input").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") addItem();
+    });
+  </script>
+</body>
+</html>

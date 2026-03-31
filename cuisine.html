@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cuisines</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f4f4f4;
+}
+
+/* navbar */
+
+.navbar{
+background:#e1a91c;
+padding:12px 30px;
+}
+
+.logo{
+color:black;
+text-decoration:none;
+}
+
+/* section */
+
+.section{
+padding:40px;
+}
+
+/* cards */
+
+.card{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+display:inline-block;
+width:220px;
+cursor:pointer;
+text-align:center;
+font-weight:bold;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+transition:0.2s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+/* recipe container */
+
+.recipe{
+background:white;
+padding:40px;
+margin-top:40px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+
+.recipe h1{
+text-align:center;
+color:#e1a91c;
+margin-bottom:30px;
+}
+
+/* image + video */
+
+.media{
+display:flex;
+gap:30px;
+justify-content:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+
+.media img{
+width:420px;
+height:260px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.media iframe{
+width:420px;
+height:260px;
+border:none;
+border-radius:12px;
+}
+
+.recipe-info{
+display:flex;
+justify-content:center;   
+align-items:flex-start;
+gap:40px;
+max-width:1000px;
+margin:40px auto;
+flex-wrap:nowrap;    
+}
+
+.ingredients{
+width:350px;
+background:#fff7e6;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 17px;
+}
+
+/* steps box */
+
+.steps{
+width:450px;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 20px;
+background:#fff7e6;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.buttons{
+text-align:center;
+margin-top:20px;
+}
+
+.buttons button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+}
+
+.buttons button:first-child{
+background:#4caf50;
+color:white;
+}
+
+.buttons button:last-child{
+background:#ff4081;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<a href="index.html" class="logo"><h2>The Secret Ingredient</h2></a>
+</div>
+
+<div class="section">
+
+<h2>World Cuisines</h2>
+
+<div class="card" onclick="italian()">Italian</div>
+<div class="card" onclick="indian()">Indian</div>
+<div class="card" onclick="mexican()">Mexican</div>
+<div class="card" onclick="chinese()">Chinese</div>
+
+</div>
+
+<div id="recipes" class="section"></div>
+
+<script>
+
+function italian(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Pasta Alfredo</h1>
+
+<div class="media">
+
+<img src="https://www.vanillabeancuisine.com/wp-content/uploads/2024/12/Spaghetti-Alfredo-FEAT-IMAGE.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LPPcNPdq_j4?si=NFcUaU45u356PO8P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>200g fettuccine pasta</li>
+<li>2 tbsp butter</li>
+<li>1 cup heavy cream</li>
+<li>½ cup grated parmesan cheese</li>
+<li>2 cloves garlic</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Pasta Alfredo provides carbohydrates for energy and calcium from cheese.  
+It is a comforting Italian dish that is rich in flavor and satisfying.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Boil pasta in salted water according to package instructions.</li>
+
+<li>Heat butter in a pan and sauté minced garlic.</li>
+
+<li>Add heavy cream and cook for 2-3 minutes.</li>
+
+<li>Add parmesan cheese and stir until sauce thickens.</li>
+
+<li>Mix cooked pasta with the sauce.</li>
+
+<li>Season with salt and pepper and serve hot.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Margherita Pizza</h1>
+
+<div class="media">
+
+<img src="https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/07/margherita-pizza-recipe.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xdshDFwu9x4?si=pLjsTJjXSaTp1Zgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Pizza dough</li>
+<li>1 cup tomato sauce</li>
+<li>Fresh mozzarella cheese</li>
+<li>Fresh basil leaves</li>
+<li>Olive oil</li>
+<li>Salt</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Margherita pizza provides carbohydrates for energy and calcium from cheese.  
+Fresh basil and tomatoes add vitamins and antioxidants.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Preheat oven to 220°C.</li>
+
+<li>Roll out pizza dough on a baking tray.</li>
+
+<li>Spread tomato sauce evenly over the dough.</li>
+
+<li>Add slices of fresh mozzarella cheese.</li>
+
+<li>Bake for 12–15 minutes until crust is golden.</li>
+
+<li>Top with fresh basil leaves and drizzle olive oil.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+`;
+
+}
+
+
+function indian(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Paneer Butter Masala</h1>
+
+<div class="media">
+
+<img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/07/paneer-butter-masala.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U1LVDFwi8qI" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>200g paneer cubes</li>
+<li>2 tomatoes (pureed)</li>
+<li>1 onion (chopped)</li>
+<li>1 tbsp butter</li>
+<li>1 tsp ginger garlic paste</li>
+<li>Spices and salt</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Paneer is rich in protein and calcium which strengthens bones.  
+This dish also provides essential vitamins from tomatoes and spices.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Heat butter in a pan and sauté chopped onions.</li>
+
+<li>Add ginger garlic paste and cook for 1 minute.</li>
+
+<li>Add tomato puree and cook until oil separates.</li>
+
+<li>Add spices and mix well.</li>
+
+<li>Add paneer cubes and cook for 5 minutes.</li>
+
+<li>Serve hot with roti or rice.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Vegetable Biryani</h1>
+
+<div class="media">
+
+<img src="https://www.cookingcarnival.com/wp-content/uploads/2025/09/Vegetable-Dum-Biryani-5.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/95BCU1n268w" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>2 cups basmati rice</li>
+<li>Mixed vegetables</li>
+<li>1 onion</li>
+<li>Biryani spices</li>
+<li>Ginger garlic paste</li>
+<li>Salt</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Vegetable biryani contains carbohydrates for energy and vegetables rich in vitamins and minerals that improve overall health.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Wash and soak basmati rice.</li>
+
+<li>Sauté onions in oil.</li>
+
+<li>Add ginger garlic paste and vegetables.</li>
+
+<li>Add spices and mix well.</li>
+
+<li>Add rice and water and cook until rice is done.</li>
+
+<li>Serve hot with raita.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+`;
+
+}
+
+
+function mexican(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Chicken Tacos</h1>
+
+<div class="media">
+
+<img src="https://tatyanaseverydayfood.com/wp-content/uploads/2022/08/Easy-Grilled-Chicken-Tacos-Recipe-1.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kvOsKDEbBQw?si=qbh09SKNouQM8gh0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Tortilla wraps</li>
+<li>Cooked chicken</li>
+<li>Lettuce</li>
+<li>Cheese</li>
+<li>Salsa sauce</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Chicken tacos provide protein and vegetables provide vitamins.  
+This balanced meal supports energy and muscle growth.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Heat tortilla wraps.</li>
+
+<li>Add cooked chicken pieces.</li>
+
+<li>Top with lettuce and cheese.</li>
+
+<li>Add salsa sauce.</li>
+
+<li>Fold the tortilla and serve.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Guacamole</h1>
+
+<div class="media">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvQgpG_zSQXClHGgIW-pTEBlqWWIRsiBEt85ss8ZFYTdjX-wFCg5UDKueWMKtIy3oJesOxMbiYWuumqAjh3JUZcNMmesyLUWgrX8gaiA&s=10">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K06J2pFY6yU?si=z123ObwW-4W5Jbpb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>2 ripe avocados</li>
+<li>1 tomato</li>
+<li>½ onion</li>
+<li>Lime juice</li>
+<li>Salt</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Avocados contain healthy fats and vitamins that support heart health and improve digestion.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Mash avocados in a bowl.</li>
+
+<li>Add chopped tomato and onion.</li>
+
+<li>Add lime juice and salt.</li>
+
+<li>Mix well.</li>
+
+<li>Serve with chips or tacos.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function chinese(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Vegetable Noodles</h1>
+
+<div class="media">
+
+<img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/02/veg-noodles-vegetable-noodles.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LN4TuIxCpYQ?si=UXPDABPwiNccS53t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Noodles</li>
+<li>Carrot</li>
+<li>Cabbage</li>
+<li>Capsicum</li>
+<li>Soy sauce</li>
+<li>Garlic</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Vegetable noodles provide carbohydrates for energy and vitamins from vegetables that help maintain good health.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Boil noodles and drain.</li>
+
+<li>Heat oil in a wok.</li>
+
+<li>Add garlic and sauté.</li>
+
+<li>Add chopped vegetables and stir fry.</li>
+
+<li>Add noodles and soy sauce.</li>
+
+<li>Mix well and serve hot.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+<div class="recipe">
+
+<h1>2. Vegetable Fried Rice</h1>
+
+<div class="media">
+
+<img src="https://images.getrecipekit.com/20220904015448-veg-20fried-20rice.png?aspect_ratio=16:9&quality=90&">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ng5GQbmF5iE?si=Eij4ZYkejmyec2fM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Cooked rice</li>
+<li>Carrots</li>
+<li>Beans</li>
+<li>Spring onions</li>
+<li>Soy sauce</li>
+<li>Garlic</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Vegetable fried rice provides quick energy and essential vitamins from vegetables.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Heat oil in a wok.</li>
+
+<li>Add garlic and sauté.</li>
+
+<li>Add vegetables and cook for 3 minutes.</li>
+
+<li>Add cooked rice and soy sauce.</li>
+
+<li>Mix well and cook for 2 minutes.</li>
+
+<li>Serve hot.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+`;
+
+}
+function getRecipeData(button){
+
+let recipe = button.closest(".recipe");
+
+let name = recipe.querySelector("h1").innerText;
+let image = recipe.querySelector("img").src;
+
+let ingredients = "";
+recipe.querySelectorAll(".ingredients li").forEach(li=>{
+ingredients += li.innerText + "\n";
+});
+
+let steps = "";
+recipe.querySelectorAll(".steps li").forEach(li=>{
+steps += li.innerText + "\n";
+});
+
+return { name, image, ingredients, steps };
+
+}
+
+
+function saveRecipe(button){
+
+let currentRecipe = getRecipeData(button);
+
+let saved = JSON.parse(localStorage.getItem("recipes")) || [];
+saved.push(currentRecipe);
+
+localStorage.setItem("recipes", JSON.stringify(saved));
+
+alert("Recipe saved!");
+window.location.href = "saved.html";
+
+}
+
+
+function addToFavourites(button){
+
+let currentRecipe = getRecipeData(button);
+
+let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+favs.push(currentRecipe);
+
+localStorage.setItem("favourites", JSON.stringify(favs));
+
+alert("Added to favourites!");
+window.location.href = "favourites.html";
+
+}
+let cuisineArray = [
+  {
+        name: "Pasta Alfredo",
+        type: "cusine",
+        category: "italian",
+        image: "https://www.vanillabeancuisine.com/wp-content/uploads/2024/12/Spaghetti-Alfredo-FEAT-IMAGE.jpg",
+        video: "https://www.youtube.com/embed/LPPcNPdq_j4",
+        ingredients: [
+          "200g fettuccine pasta",
+          "2 tbsp butter",
+          "1 cup heavy cream",
+          "½ cup parmesan cheese",
+          "2 cloves garlic"
+        ],
+        steps: [
+          "Boil pasta",
+          "Sauté garlic in butter",
+          "Add cream",
+          "Add cheese",
+          "Mix pasta"
+        ]
+      },
+      {
+        name: "Margherita Pizza",
+         type: "cusine",
+        category: "italian",
+        image: "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/07/margherita-pizza-recipe.jpg",
+        video: "https://www.youtube.com/embed/xdshDFwu9x4",
+        ingredients: [
+          "Pizza dough",
+          "Tomato sauce",
+          "Mozzarella",
+          "Basil"
+        ],
+        steps: [
+          "Roll dough",
+          "Add sauce",
+          "Add cheese",
+          "Bake",
+          "Add basil"
+        ]
+  },
+      {
+        name: "Paneer Butter Masala",
+         type: "cusine",
+        category: "indian",
+        image: "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/07/paneer-butter-masala.jpg",
+        video: "https://www.youtube.com/embed/U1LVDFwi8qI",
+        ingredients: [
+          "Paneer",
+          "Tomato puree",
+          "Onion",
+          "Butter",
+          "Spices"
+        ],
+        steps: [
+          "Cook onions",
+          "Add paste",
+          "Add tomato",
+          "Add spices",
+          "Add paneer"
+        ]
+      },
+      {
+        name: "Vegetable Biryani",
+         type: "cusine",
+        category: "indian",
+        image: "https://www.cookingcarnival.com/wp-content/uploads/2025/09/Vegetable-Dum-Biryani-5.jpg",
+        video: "https://www.youtube.com/embed/95BCU1n268w",
+        ingredients: [
+          "Rice",
+          "Vegetables",
+          "Spices"
+        ],
+        steps: [
+          "Soak rice",
+          "Cook vegetables",
+          "Add rice",
+          "Cook"
+        ]
+  },
+
+      {
+        name: "Chicken Tacos",
+         type: "cusine",
+        category: "mexican",
+        image: "https://tatyanaseverydayfood.com/wp-content/uploads/2022/08/Easy-Grilled-Chicken-Tacos-Recipe-1.jpg",
+        video: "https://www.youtube.com/embed/kvOsKDEbBQw",
+        ingredients: [
+          "Tortilla",
+          "Chicken",
+          "Lettuce",
+          "Cheese"
+        ],
+        steps: [
+          "Heat tortilla",
+          "Add chicken",
+          "Add toppings",
+          "Serve"
+        ]
+      },
+      {
+        name: "Guacamole",
+         type: "cusine",
+        category: "mexican",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvQgpG_zSQXClHGgIW-pTEBlqWWIRsiBEt85ss8ZFYTdjX-wFCg5UDKueWMKtIy3oJesOxMbiYWuumqAjh3JUZcNMmesyLUWgrX8gaiA&s=10",
+        video: "https://www.youtube.com/embed/K06J2pFY6yU",
+        ingredients: [
+          "Avocado",
+          "Tomato",
+          "Onion",
+          "Lime"
+        ],
+        steps: [
+          "Mash avocado",
+          "Add veggies",
+          "Mix",
+          "Serve"
+        ]
+  },
+      {
+        name: "Vegetable Noodles",
+         type: "cusine",
+        category: "chinese",
+        image: "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/02/veg-noodles-vegetable-noodles.jpg",
+        video: "https://www.youtube.com/embed/LN4TuIxCpYQ",
+        ingredients: [
+          "Noodles",
+          "Vegetables",
+          "Soy sauce"
+        ],
+        steps: [
+          "Boil noodles",
+          "Cook veggies",
+          "Mix together"
+        ]
+      },
+      {
+        name: "Vegetable Fried Rice",
+         type: "cusine",
+        category: "chinese",
+        image: "https://images.getrecipekit.com/20220904015448-veg-20fried-20rice.png",
+        video: "https://www.youtube.com/embed/Ng5GQbmF5iE",
+        ingredients: [
+          "Rice",
+          "Vegetables",
+          "Soy sauce"
+        ],
+        steps: [
+          "Cook vegetables",
+          "Add rice",
+          "Mix"
+        ]
+      }
+];
+if (!localStorage.getItem("cuisines")) {
+  localStorage.setItem("cuisines", JSON.stringify(cuisineArray));
+}
+</script>
+
+</body>
+</html>

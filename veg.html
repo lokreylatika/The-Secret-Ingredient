@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vegetarian Recipes</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background: white
+}
+
+/* navbar */
+
+.navbar{
+background:#e1a91c;
+padding:12px 30px;
+}
+
+.logo{
+color:black;
+text-decoration:none;
+}
+
+/* section */
+
+.section{
+padding:40px;
+}
+
+/* cards */
+
+.card{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+display:inline-block;
+width:220px;
+cursor:pointer;
+text-align:center;
+font-weight:bold;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+transition:0.2s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+/* recipe container */
+
+.recipe{
+background:white;
+padding:40px;
+margin-top:40px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+
+.recipe h1{
+text-align:center;
+color:#e1a91c;
+margin-bottom:30px;
+}
+
+/* image + video */
+
+.media{
+display:flex;
+gap:30px;
+justify-content:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+
+.media img{
+width:420px;
+height:260px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.media iframe{
+width:420px;
+height:260px;
+border:none;
+border-radius:12px;
+}
+
+.recipe-info{
+display:flex;
+justify-content:center;   
+align-items:flex-start;
+gap:40px;
+max-width:1000px;
+margin:40px auto;
+flex-wrap:nowrap;    
+}
+
+.ingredients{
+width:350px;
+background:#fff7e6;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 17px;
+}
+
+/* steps box */
+
+.steps{
+width:450px;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 20px;
+background:#fff7e6;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.buttons{
+text-align:center;
+margin-top:20px;
+}
+
+.buttons button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+}
+
+.buttons button:first-child{
+background:#4caf50;
+color:white;
+}
+
+.buttons button:last-child{
+background:#ff4081;
+color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+<a href="index.html" class="logo"><h2>The Secret Ingredient</h2></a>
+</div>
+
+
+<div class="section">
+
+<h2>Vegetarian Categories</h2>
+
+<div class="card" onclick="gluten()">Gluten-Free</div>
+<div class="card" onclick="dairy()">Dairy-Free</div>
+<div class="card" onclick="vegan()">Vegan</div>
+
+</div>
+
+
+<div id="recipes" class="section"></div>
+
+
+<script>
+
+
+function gluten(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Quinoa Vegetable Bowl</h1>
+
+<div class="media">
+
+<img src="https://www.floatingkitchen.net/wp-content/uploads/2022/03/Roasted-Vegetable-Quinoa-Bowls-1-735x490.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uK4LibynqSk?si=6bCrxph4VDlp9JSa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup quinoa</li>
+<li>1 carrot (chopped)</li>
+<li>1 cucumber (sliced)</li>
+<li>½ cup cherry tomatoes</li>
+<li>1 tbsp olive oil</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Quinoa is packed with protein and essential amino acids.
+It supports digestion, improves energy levels,
+and is naturally gluten-free.
+
+</p>
+
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Rinse quinoa under cold water.</li>
+
+<li>Add quinoa and 2 cups water to a pot and bring to a boil.</li>
+
+<li>Reduce heat and simmer for about 15 minutes.</li>
+
+<li>Chop carrot, cucumber and tomatoes.</li>
+
+<li>Lightly sauté vegetables in olive oil.</li>
+
+<li>Combine quinoa and vegetables in a bowl.</li>
+
+<li>Add salt and pepper and mix well.</li>
+
+<li>Serve warm or chilled.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+
+
+
+<div class="recipe">
+
+<h1>2. Vegetable Rice Stir Fry</h1>
+
+<div class="media">
+
+<img src="https://cookieandkate.com/images/2017/05/vegetable-fried-rice.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pylpywaSZ6c?si=5FUqrtIjrPGwz57k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup cooked rice</li>
+<li>½ cup carrots</li>
+<li>½ cup cabbage</li>
+<li>½ cup beans</li>
+<li>1 tbsp soy sauce</li>
+<li>1 tsp sesame oil</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+This dish is rich in carbohydrates and vitamins from vegetables.  
+It provides quick energy and supports digestion.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+  <ol>
+
+<li>Cook 1 cup of rice and keep it aside to cool.</li>
+
+<li>Wash and chop vegetables such as carrots, cabbage, beans, and capsicum into thin pieces.</li>
+
+<li>Heat 1 tablespoon of oil in a large pan or wok on medium heat.</li>
+
+<li>Add 1 teaspoon minced garlic and sauté for about 30 seconds until fragrant.</li>
+
+<li>Add the chopped vegetables to the pan and stir fry on high heat for 3–4 minutes.</li>
+
+<li>Add 1 tablespoon soy sauce and mix well so the vegetables absorb the flavor.</li>
+
+<li>Add the cooked rice to the pan and mix everything together thoroughly.</li>
+
+<li>Stir fry for another 2–3 minutes while tossing the mixture continuously.</li>
+
+<li>Season with salt and pepper according to taste.</li>
+
+<li>Serve hot and garnish with spring onions if desired.</li>
+
+</ol>
+</div>
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+
+
+<div class="recipe">
+
+<h1>3. Sweet Potato Quinoa Bowl</h1>
+
+<div class="media">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjVyq5bpPZ85zrqV434U0307Tl1Olp1wVcQQ&s">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D9w6hM6gQwE?si=RHQJDYxP04zVqUQw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup cooked quinoa</li>
+<li>1 medium sweet potato (cubed)</li>
+<li>½ cup roasted chickpeas</li>
+<li>1 cup spinach leaves</li>
+<li>1 tbsp olive oil</li>
+<li>½ tsp paprika</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Sweet potatoes are rich in vitamin A and antioxidants.  
+Quinoa provides plant-based protein and fiber that support digestion and maintain energy levels throughout the day.
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Preheat the oven to 200°C (400°F).</li>
+
+<li>Peel and cut the sweet potato into small cubes.</li>
+
+<li>Toss the cubes with olive oil, paprika, salt, and pepper.</li>
+
+<li>Spread them on a baking tray and roast for about 20 minutes.</li>
+
+<li>While the sweet potato is roasting, cook the quinoa according to package instructions.</li>
+
+<li>Wash fresh spinach leaves and prepare roasted chickpeas.</li>
+
+<li>Once everything is ready, place quinoa in a bowl.</li>
+
+<li>Add roasted sweet potatoes, chickpeas, and spinach on top.</li>
+
+<li>Drizzle with olive oil or your favorite dressing.</li>
+
+<li>Mix lightly and serve warm.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+`;
+
+}
+
+
+
+function dairy(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Avocado Toast</h1>
+
+<div class="media">
+
+<img src="https://www.giallozafferano.com/images/273-27388/Avocado-toast_650x433_wm.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dP6btliLGy4?si=mbnjIJEqeObcOjMC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>2 slices whole grain bread</li>
+<li>1 ripe avocado</li>
+<li>1 tsp lemon juice</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Avocados contain healthy fats that support heart health
+and provide vitamins like potassium and vitamin E.
+
+</p>
+
+</div>
+
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Toast bread slices.</li>
+
+<li>Mash avocado in a bowl.</li>
+
+<li>Add lemon juice, salt and pepper.</li>
+
+<li>Spread mixture on toast.</li>
+
+<li>Add toppings like tomatoes or seeds.</li>
+
+<li>Serve immediately.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+<div class="recipe">
+
+<h1>2.Lemon Rice</h1>
+
+<div class="media">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe42yMh_atPbfBtlA1gjrxVGliddrDg1S1sA&s">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/S582ox6c4l4?si=oNW4ho5A4_kbx7CT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Cooked rice</li>
+<li>Mustard seeds</li>
+<li>Curry leaves</li>
+<li>Green chilli</li>
+<li>Peanuts</li>
+<li>Lemon juice</li>
+<li>Turmeric and salt</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+1.Easy digestion
+2.Refreshing taste
+3.Good for lunch box
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+  <ol>
+
+<li>Heat oil, add mustard seeds, curry leaves, peanuts</li>
+
+<li>Add chili and turmeric</li>
+
+<li>Mix cooked rice</li>
+
+<li>Add lemon juice and salt</li>
+
+<li>Mix well and serve</li>
+
+</ol>
+</div>
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+
+<div class="recipe">
+
+<h1>3.Vegetable Poha</h1>
+
+<div class="media">
+
+<img src="https://www.mrishtanna.com/wp-content/uploads/2018/04/poha-indian-breakfast-recipe.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X35gOeA8l_4?si=0hXP5SJ0ANs6k1hd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>Flattened rice</li>
+<li>onion,potato,green chillu</li>
+<li>Mustard seeds</li>
+<li>Curry leaves</li>
+<li>Turmeric,salt</li>
+<li>Lemon juice</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+1.Light and filling
+
+2.Good breakfast option
+
+3.Easy digestion
+
+</p>
+
+</div>
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+  <ol>
+
+<li>Wash poha and keep aside</li>
+
+<li>Heat oil, add mustard seeds & curry leaves</li>
+
+<li>Add onion,potato,chilli and cook</li>
+
+<li>Add turmeric and salt</li>
+
+<li>Mix poha and cook fro 2-3 minutes</li>
+<li>Add lemon juice and serve</li>
+
+</ol>
+</div>
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+`;
+
+}
+
+
+
+function vegan(){
+
+document.getElementById("recipes").innerHTML=`
+
+<div class="recipe">
+
+<h1>1. Vegan Buddha Bowl</h1>
+
+<div class="media">
+
+<img src="https://www.crazyvegankitchen.com/wp-content/uploads/2023/11/buddha-bowl-recipe.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5grQyHO2-jw?si=yM3ERC6WEH5Sotzl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup brown rice</li>
+<li>1 cup roasted chickpeas</li>
+<li>Spinach leaves</li>
+<li>Avocado slices</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+This bowl provides plant-based protein,
+fiber, and essential nutrients that help
+maintain energy and digestive health.
+
+</p>
+
+</div>
+
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Cook brown rice.</li>
+
+<li>Roast chickpeas with spices.</li>
+
+<li>Prepare fresh vegetables.</li>
+
+<li>Add rice to bowl.</li>
+
+<li>Top with chickpeas and vegetables.</li>
+
+<li>Add dressing and serve.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+<div class="recipe">
+
+<h1>2. Vegan Chickpea Salad</h1>
+
+<div class="media">
+
+<img src="https://cookieandkate.com/images/2021/08/best-chickpea-salad-recipe-2.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/244HOfIQw9Y?si=EqXkUbppanxSVp1g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup boiled chickpeas</li>
+<li>1 cucumber (chopped)</li>
+<li>1 tomato (chopped)</li>
+<li>½ onion (chopped)</li>
+<li>1 tbsp olive oil</li>
+<li>1 tbsp lemon juice</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Chickpeas are rich in plant-based protein and fiber.  
+This salad helps improve digestion, supports heart health,  
+and provides long-lasting energy while being completely vegan.
+
+</p>
+
+</div>
+
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Rinse the boiled chickpeas with clean water and drain them.</li>
+
+<li>Chop cucumber, tomato, and onion into small pieces.</li>
+
+<li>Add chickpeas and vegetables into a large bowl.</li>
+
+<li>Drizzle olive oil and lemon juice over the mixture.</li>
+
+<li>Season with salt and pepper according to taste.</li>
+
+<li>Mix everything gently until well combined.</li>
+
+<li>Serve fresh and garnish with parsley if desired.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+</div>
+
+
+<div class="recipe">
+
+<h1>3. Vegan Lentil Vegetable Bowl</h1>
+
+<div class="media">
+
+<img src="https://www.feastingathome.com/wp-content/uploads/2024/01/Lentil-Bowl-6.jpg">
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UaEogCDFV7c?si=6C6rlHBK6jIpRmBr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</div>
+
+<div class="recipe-info">
+
+<div class="ingredients">
+
+<h2>Ingredients</h2>
+
+<ul>
+<li>1 cup cooked lentils</li>
+<li>½ cup brown rice</li>
+<li>1 carrot (chopped)</li>
+<li>½ cup broccoli florets</li>
+<li>1 tbsp olive oil</li>
+<li>1 tsp garlic (minced)</li>
+<li>Salt & pepper</li>
+</ul>
+
+<h2>Benefits</h2>
+
+<p>
+
+Lentils are an excellent source of plant-based protein, iron, and fiber.  
+This vegan bowl supports heart health, improves digestion, and helps maintain steady energy levels throughout the day.
+
+</p>
+
+</div>
+
+
+<div class="steps">
+
+<h2>Step-by-Step Procedure</h2>
+
+<ol>
+
+<li>Cook lentils in boiling water for about 15–20 minutes until tender.</li>
+
+<li>Prepare brown rice according to package instructions.</li>
+
+<li>Chop carrot and broccoli into small bite-sized pieces.</li>
+
+<li>Heat olive oil in a pan and sauté garlic for about 30 seconds.</li>
+
+<li>Add chopped vegetables and stir fry for 3–4 minutes.</li>
+
+<li>Add cooked lentils and mix well with the vegetables.</li>
+
+<li>Season with salt and pepper according to taste.</li>
+
+<li>Place brown rice in a bowl and top with the lentil vegetable mixture.</li>
+
+<li>Mix gently and serve warm.</li>
+
+</ol>
+
+</div>
+
+</div>
+<div class="buttons">
+<button onclick="saveRecipe(this)">💾 Save</button>
+<button onclick="addToFavourites(this)">❤️ Favourite</button>
+</div>
+
+</div>
+
+`;
+
+}
+
+function getRecipeData(button){
+
+let recipe = button.closest(".recipe");
+
+let name = recipe.querySelector("h1").innerText;
+let image = recipe.querySelector("img").src;
+
+let ingredients = "";
+recipe.querySelectorAll(".ingredients li").forEach(li=>{
+ingredients += li.innerText + "\n";
+});
+
+let steps = "";
+recipe.querySelectorAll(".steps li").forEach(li=>{
+steps += li.innerText + "\n";
+});
+
+return { name, image, ingredients, steps };
+
+}
+
+
+function saveRecipe(button){
+
+let currentRecipe = getRecipeData(button);
+
+let saved = JSON.parse(localStorage.getItem("recipes")) || [];
+saved.push(currentRecipe);
+
+localStorage.setItem("recipes", JSON.stringify(saved));
+
+alert("Recipe saved!");
+window.location.href = "saved.html";
+
+}
+
+
+function addToFavourites(button){
+
+let currentRecipe = getRecipeData(button);
+
+let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+favs.push(currentRecipe);
+
+localStorage.setItem("favourites", JSON.stringify(favs));
+
+alert("Added to favourites!");
+window.location.href = "favourites.html";
+
+}
+let vegArray = [
+  {
+    name: "Quinoa Vegetable Bowl",
+    type: "veg",
+    category: "gluten-free",
+    ingredients: "quinoa, carrot, cucumber, tomatoes, olive oil, salt, pepper",
+    steps: "Cook quinoa, sauté vegetables, mix together",
+    image: "https://www.floatingkitchen.net/wp-content/uploads/2022/03/Roasted-Vegetable-Quinoa-Bowls-1-735x490.jpg",
+    video: "https://www.youtube.com/watch?v=1zR9xk1Yk6w"
+  },
+  {
+    name: "Vegetable Rice Stir Fry",
+    type: "veg",
+    category: "gluten-free",
+    ingredients: "rice, carrots, cabbage, beans, soy sauce, sesame oil",
+    steps: "Cook rice, stir fry vegetables, mix together",
+    image: "https://cookieandkate.com/images/2017/05/vegetable-fried-rice.jpg",
+    video: "https://www.youtube.com/watch?v=3Z0Y3vQzW5Q"
+  },
+  {
+    name: "Sweet Potato Quinoa Bowl",
+    type: "veg",
+    category: "gluten-free",
+    ingredients: "quinoa, sweet potato, chickpeas, spinach, olive oil",
+    steps: "Roast sweet potato, cook quinoa, assemble bowl",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjVyq5bpPZ85zrqV434U0307Tl1Olp1wVcQQ&s",
+    video: "https://www.youtube.com/watch?v=KQ9r3zW5r6Y"
+  },
+  {
+    name: "Avocado Toast",
+    type: "dairy-free",
+    category: "veg",
+    ingredients: "bread, avocado, lemon juice, salt, pepper",
+    steps: "Toast bread, mash avocado, spread and serve",
+    image: "https://www.giallozafferano.com/images/273-27388/Avocado-toast_650x433_wm.jpg",
+    video: "https://www.youtube.com/watch?v=5NV6Rdv1a3I"
+  },
+  {
+    name: "Lemon Rice",
+    type: "veg",
+    category: "dairy-free",
+    ingredients: "rice, mustard seeds, curry leaves, lemon juice, peanuts",
+    steps: "Prepare tempering, mix rice, add lemon juice",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe42yMh_atPbfBtlA1gjrxVGliddrDg1S1sA&s",
+    video: "https://www.youtube.com/watch?v=8g1h6RZr6Yc"
+  },
+  {
+    name: "Vegetable Poha",
+    type: "veg",
+    category: "dairy-free",
+    ingredients: "poha, onion, potato, mustard seeds, curry leaves",
+    steps: "Cook vegetables, add poha, mix and serve",
+    image: "https://www.mrishtanna.com/wp-content/uploads/2018/04/poha-indian-breakfast-recipe.jpg",
+    video: "https://www.youtube.com/watch?v=9oG3h8zv8sE"
+  },
+  {
+    name: "Vegan Buddha Bowl",
+    type: "veg",
+    category: "vegan",
+    ingredients: "brown rice, chickpeas, spinach, avocado",
+    steps: "Cook rice, roast chickpeas, assemble bowl",
+    image: "https://www.crazyvegankitchen.com/wp-content/uploads/2023/11/buddha-bowl-recipe.jpg",
+    video: "https://www.youtube.com/watch?v=2GvQ9Wq6F3Y"
+  },
+  {
+    name: "Vegan Chickpea Salad",
+    type: "veg",
+    category: "vegan",
+    ingredients: "chickpeas, cucumber, tomato, onion, olive oil",
+    steps: "Mix all ingredients and serve",
+    image: "https://cookieandkate.com/images/2021/08/best-chickpea-salad-recipe-2.jpg",
+    video: "https://www.youtube.com/watch?v=U9YKY7fdwyg"
+  },
+  {
+    name: "Vegan Lentil Vegetable Bowl",
+    type: "veg",
+    category: "vegan",
+    ingredients: "lentils, rice, carrot, broccoli",
+    steps: "Cook lentils, prepare vegetables, combine",
+    image: "https://www.feastingathome.com/wp-content/uploads/2024/01/Lentil-Bowl-6.jpg",
+    video: "https://www.youtube.com/watch?v=R6xgFQ6t6rA"
+  }
+];
+
+if (!localStorage.getItem("vegRecipes")) {
+  localStorage.setItem("vegRecipes", JSON.stringify(vegArray));
+}
+</script>
+
+</body>
+</html>

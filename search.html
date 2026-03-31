@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🔍 Search Results</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #fff7e6;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .recipe-card {
+      background: white;
+      width: 350px;
+      margin: 15px auto;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🔍 Search Results</h1>
+<div id="results"></div>
+
+<script>
+let query = localStorage.getItem("searchQuery")?.toLowerCase() || "";
+
+// Get all stored recipes
+let saved = JSON.parse(localStorage.getItem("recipes")) || [];
+let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+let veg = JSON.parse(localStorage.getItem("vegRecipes")) || [];
+let nonveg = JSON.parse(localStorage.getItem("nonvegRecipes")) || [];
+let desserts = JSON.parse(localStorage.getItem("dessertRecipes")) || [];
+let healthy = JSON.parse(localStorage.getItem("healthyRecipes")) || [];
+let cuisines = JSON.parse(localStorage.getItem("cuisines")) || [];
+
+// ✅ combine all (now cuisines is already flat)
+let allRecipes = [...saved, ...favs, ...veg, ...nonveg, ...desserts, ...healthy, ...cuisines];
+
+// ✅ remove duplicates
+let uniqueRecipes = [];
+let names = new Set();
+
+allRecipes.forEach(recipe => {
+  if (!names.has(recipe.name)) {
+    names.add(recipe.name);
+    uniqueRecipes.push(recipe);
+  }
+});
+
+// ✅ safe search (handles string + array)
+let results = uniqueRecipes.filter(recipe => {
+
+  let ingredients = Array.isArray(recipe.ingredients)
+    ? recipe.ingredients.join(" ")
+    : recipe.ingredients || "";
+
+  let steps = Array.isArray(recipe.steps)
+    ? recipe.steps.join(" ")
+    : recipe.steps || "";
+
+  return (
+    recipe.name.toLowerCase().includes(query) ||
+    ingredients.toLowerCase().includes(query) ||
+    steps.toLowerCase().includes(query) ||
+    (recipe.type && recipe.type.toLowerCase().includes(query)) ||
+    (recipe.category && recipe.category.toLowerCase().includes(query))
+  );
+});
+
+let container = document.getElementById("results");
+
+if (results.length === 0) {
+  container.innerHTML = "<p>No recipes found 😢</p>";
+} else {
+  results.forEach(recipe => {
+    let card = document.createElement("div");
+    card.className = "recipe-card";
+
+    card.innerHTML = `
+  ${recipe.image ? `<img src="${recipe.image}">` : ""}
+  <h3>${recipe.name}</h3>
+  <p><strong>Type:</strong> ${recipe.type || "N/A"}</p>
+  <p><strong>Category:</strong> ${recipe.category || "N/A"}</p>
+
+  <p><strong>Ingredients:</strong><br>
+  ${Array.isArray(recipe.ingredients)
+    ? recipe.ingredients.join("<br>")
+    : recipe.ingredients}
+  </p>
+
+  <p><strong>Steps:</strong><br>
+  ${Array.isArray(recipe.steps)
+    ? recipe.steps.join("<br>")
+    : recipe.steps}
+  </p>
+
+  ${recipe.video ? `
+    <iframe width="100%" height="200"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+  ` : ""}
+`;
+    container.appendChild(card);
+  });
+}
+</script>
+</body>
+</html>

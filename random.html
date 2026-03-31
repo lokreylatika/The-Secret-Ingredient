@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Recipe</title>
+  <style>
+ body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #fff7e6, #ffe0b2);
+  margin: 0;
+  
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+    h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+    }
+    button {
+      padding: 10px 18px;
+      margin: 8px 5px;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    button#get-random {
+      background: linear-gradient(135deg, #4caf50, #81c784);
+    }
+
+    .recipe-card button.save {
+      background: linear-gradient(135deg, #2196f3, #64b5f6);
+    }
+
+    .recipe-card button.favourite {
+      background: linear-gradient(135deg, #ff4081, #f48fb1);
+    }
+    .recipe-card {
+      border-radius: 15px;
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      width: 350px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .recipe-card h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .recipe-card p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .recipe-card strong {
+      color: #222;
+    }
+    .recipe-card .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    .navbar{
+background:#e1a91c;
+padding:12px 30px;
+ top: 0;        
+ position: fixed;   
+  left: 0;           
+  width: 100%;       
+  z-index: 1000;    
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+#recipe-result {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="Homepage.html" class="logo"><h2>The Secret Ingredient</h2></a>
+</div>
+
+<div class="main">
+
+  <div class="container">
+    <h1>🎲 Random Recipe</h1>
+    <p>Tap to discover a surprise recipe.</p>
+    <button id="get-random" onclick="getRandomRecipe()">Get Random Recipe</button>
+  </div>
+
+  <div id="recipe-result"></div>
+
+</div>
+  <script>
+  function getAllRecipes() {
+  let saved = JSON.parse(localStorage.getItem("recipes")) || [];
+  let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+  let veg = JSON.parse(localStorage.getItem("vegRecipes")) || [];
+  let nonveg = JSON.parse(localStorage.getItem("nonvegRecipes")) || [];
+  let desserts = JSON.parse(localStorage.getItem("dessertRecipes")) || [];
+  let healthy = JSON.parse(localStorage.getItem("healthyRecipes")) || [];
+  let cuisines = JSON.parse(localStorage.getItem("cuisines")) || [];
+
+  return [...saved, ...favs, ...veg, ...nonveg, ...desserts, ...healthy, ...cuisines];
+}
+    let currentRecipe = null;
+
+   function getRandomRecipe() {
+  let allRecipes = getAllRecipes();
+
+  if (allRecipes.length === 0) {
+    document.getElementById("recipe-result").innerHTML =
+      "<p>No recipes found 😢</p>";
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * allRecipes.length);
+  currentRecipe = allRecipes[randomIndex];
+
+  document.getElementById("recipe-result").innerHTML = `
+    <div class="recipe-card">
+      <h3>${currentRecipe.name}</h3>
+
+      ${currentRecipe.image ? `
+        <img src="${currentRecipe.image}" style="width:100%; border-radius:10px; margin-bottom:10px;">
+      ` : ""}
+
+      <p><strong>Ingredients:</strong><br>${(currentRecipe.ingredients || "").replace(/\n/g, "<br>")}</p>
+      <p><strong>Steps:</strong><br>${(currentRecipe.steps || "").replace(/\n/g, "<br>")}</p>
+
+      ${
+        currentRecipe.video
+          ? `<p><strong>Video Tutorial:</strong></p>
+             <iframe width="100%" height="200"
+             src="${currentRecipe.video.replace("watch?v=", "embed/")}"
+             frameborder="0" allowfullscreen></iframe>`
+          : ""
+      }
+
+      <div class="buttons">
+        <button class="save" onclick="saveRecipe()">Save</button>
+        <button class="favourite" onclick="addToFavourites()">❤️ Favourite</button>
+      </div>
+    </div>
+  `;
+}
+function saveRecipe() {
+      let saved = JSON.parse(localStorage.getItem("recipes")) || [];
+      saved.push(currentRecipe);
+      localStorage.setItem("recipes", JSON.stringify(saved));
+      alert("Recipe saved!");
+       window.location.href = "saved.html";
+    }
+
+    function addToFavourites() {
+      let favs = JSON.parse(localStorage.getItem("favourites")) || [];
+      favs.push(currentRecipe);
+      localStorage.setItem("favourites", JSON.stringify(favs));
+      alert("Added to favourites!");
+      window.location.href = "favourites.html"; 
+    }
+  </script>
+
+</body>
+</html>

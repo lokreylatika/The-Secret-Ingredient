@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cooking Timer</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #ffe0b2, #fff3e0);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+.navbar{
+background:#e1a91c;
+padding:12px 30px;
+ top: 0;        
+ position: fixed;   
+  left: 0;           
+  width: 100%;       
+  z-index: 1000;     
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+.container {
+  text-align: center;
+   margin-top: 80px;
+}
+
+h1 {
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 30px;
+  color: #666;
+}
+#timer-box {
+  margin-top: 20px;
+  margin-left: 200px;
+  padding: 25px;
+  width: 300px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+#timer-box:hover {
+  transform: scale(1.02);
+}
+
+#timeInput {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+#timeInput:focus {
+  border-color: #ff9800;
+}
+
+button {
+  padding: 10px 16px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+  transition: 0.3s;
+}
+button.start {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+}
+
+button.pause {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+}
+
+button.reset {
+  background: linear-gradient(135deg, #f44336, #e57373);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+label{
+    font-size: 20px;
+}
+input{
+    font-size: 20px; ;
+}
+#display {
+  font-size: 36px;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #222;
+}
+  </style>
+</head>
+<body>
+      <div class="navbar">
+<a href="Homepage.html" class="logo"><h2>The Secret Ingredient</h2></a>
+</div>
+  <div class="container">
+    <h1>⏱ Cooking Timer</h1>
+    <p>Set custom timers and manage multiple dishes easily.</p>
+
+    <div id="timer-box">
+      <label>Enter time (seconds):</label><br>
+      <input type="number" id="timeInput" min="1" placeholder="e.g., 60"><br><br>
+
+       <button class="start" onclick="startTimer()">Start</button>
+  <button class="pause" onclick="pauseTimer()">Pause</button>
+  <button class="reset" onclick="resetTimer()">Reset</button>
+
+      <h2 id="display">00:00</h2>
+    </div>
+  </div>
+
+  <script>
+    let timer;
+    let timeLeft = 0;
+    let running = false;
+
+    function startTimer() {
+      if (!running) {
+        const input = document.getElementById("timeInput").value;
+        if (input && timeLeft === 0) {
+          timeLeft = parseInt(input);
+        }
+
+        if (timeLeft > 0) {
+          running = true;
+          timer = setInterval(updateTimer, 1000);
+        }
+      }
+    }
+
+    function updateTimer() {
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        running = false;
+        alert("⏱ Time's up!");
+        return;
+      }
+
+      timeLeft--;
+      displayTime();
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+      running = false;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      running = false;
+      timeLeft = 0;
+      document.getElementById("display").textContent = "00:00";
+      document.getElementById("timeInput").value = "";
+    }
+
+    function displayTime() {
+      let minutes = Math.floor(timeLeft / 60);
+      let seconds = timeLeft % 60;
+
+      if (minutes < 10) minutes = "0" + minutes;
+      if (seconds < 10) seconds = "0" + seconds;
+
+      document.getElementById("display").textContent = `${minutes}:${seconds}`;
+    }
+  </script>
+
+</body>
+</html>

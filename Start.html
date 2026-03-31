@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Secret Ingredient</title>
+    <style>
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 18px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #fff9c4, #fbc02d);
+        }
+        .container {
+            text-align: center;
+        }
+        .logo {
+            margin-top: 100px;
+            width: 400px;
+            margin-bottom: 0px;
+            border-radius: 50px;
+        }
+        h1 {
+            font-size: 45px;
+            color: #333;
+            margin-bottom: 15px;
+            margin-top: 0px;
+        }
+        p {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 35px;
+        }
+        .about{
+            border: 1px dotted black;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="Login.html">Login</a>
+        <a href="SignUp.html">Sign up</a>
+    </div>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="logo">
+
+        <h1>The Secret Ingredient</h1>
+        <p>Discover flavors from around the world, crafted in your own kitchen.</p>
+    </div>
+    <script>
+window.onload = function() {
+  alert("Welcome to The Secret Ingredient!");
+};
+</script>
+</body>
+</html>
